@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Source GIS Web App</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Parallax Header */
+    .parallax {
+      background-image: url('https://source.unsplash.com/1600x900/?map,landscape');
+      height: 60vh;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    }
+
+    nav {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 0;
+      position: absolute;
+      top: 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .header-content h1 {
+      font-size: 3rem;
+    }
+
+    #map {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="parallax">
+    <nav>
+      <a href="#map">Map</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-content">
+      <h1>Open Source GIS Viewer</h1>
+      <p>Interactive Mapping with Leaflet + GitHub</p>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([37.8, -96], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Sample marker
+    L.marker([37.8, -96]).addTo(map)
+      .bindPopup('USA Center Point')
+      .openPopup();
+  </script>
+</body>
+</html>
